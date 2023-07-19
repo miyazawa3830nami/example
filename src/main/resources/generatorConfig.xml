@@ -16,8 +16,8 @@
 
         <jdbcConnection
                 driverClass="org.postgresql.Driver"
-                connectionURL="jdbc:postgresql://localhost:5432/"
-                userId="postgres"
+                connectionURL="jdbc:postgresql://localhost:5432/todo_list"
+                userId="app_user"
                 password="password"/>
 
         <javaModelGenerator
@@ -31,6 +31,6 @@
                 targetPackage="com.example.example.spring.mybatis.mapper"
                 targetProject="src/main/java"/>
 
-        <table tableName="%"/>
+        <table tableName="todo_list"/>
     </context>
 </generatorConfiguration>
