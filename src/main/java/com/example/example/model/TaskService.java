@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
@@ -22,14 +24,17 @@ public class TaskService {
      *
      * @param form createTaskForm
      * @return String
+     * @throws ParseException
      */
-    public String createTask(CreateTaskForm form) {
+    public String createTask(CreateTaskForm form) throws ParseException {
         Date date = new Date();
         TodoList todoList = new TodoList();
         todoList.setTaskName(form.getTaskName());
         todoList.setTaskDetail(form.getTaskDetail());
         todoList.setStatus(form.getStatus());
-        todoList.setLimitDate(form.getLimitDate());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date limitDate = simpleDateFormat.parse(form.getLimitDate());
+        todoList.setLimitDate(limitDate);
         todoList.setCreateDate(date);
         todoList.setLastmodifyDate(date);
         todoListRepository.insert(todoList);

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+
 @Controller
 @RestController
 @RequestMapping(path = "/task")
@@ -22,7 +24,7 @@ public class TaskController {
 //    }
 
     @PutMapping
-    public ResponseEntity<String> createTask(CreateTaskForm form) {
+    public ResponseEntity<String> createTask(CreateTaskForm form) throws ParseException {
         System.out.println(form.getTaskName());
         return ResponseEntity.ok(taskService.createTask(form));
     }
