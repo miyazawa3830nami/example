@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 
@@ -39,6 +40,21 @@ public class TaskService {
         todoList.setLastmodifyDate(date);
         todoListRepository.insert(todoList);
         return "";
+    }
+
+    //    public TodoList selectByTaskId(Integer taskId) {
+//        return todoListRepository.selectByTaskId(taskId);
+//    }
+    public List<TodoList> selectTask(CreateTaskForm form) {
+        Date date = new Date();
+        TodoList todoList = new TodoList();
+        todoList.setTaskName(form.getTaskName());
+        todoList.setTaskDetail(form.getTaskDetail());
+        todoList.setStatus(form.getStatus());
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        Date limitDate = simpleDateFormat.parse(form.getLimitDate());
+//        todoList.setLimitDate(limitDate);
+        return todoListRepository.select(todoList);
     }
 
 }
